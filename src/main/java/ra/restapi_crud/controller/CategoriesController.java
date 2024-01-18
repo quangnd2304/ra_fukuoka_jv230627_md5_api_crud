@@ -1,5 +1,6 @@
 package ra.restapi_crud.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class CategoriesController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoriesDTOResponse> save(@RequestBody CategoriesDTORequest categoriesDTORequest) {
+    public ResponseEntity<CategoriesDTOResponse> save(@Valid @RequestBody CategoriesDTORequest categoriesDTORequest) {
         CategoriesDTOResponse categories = categoriesService.save(categoriesDTORequest);
         return new ResponseEntity<>(categories, HttpStatus.CREATED);
     }
