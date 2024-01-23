@@ -1,6 +1,7 @@
 package ra.restapi_crud.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Categories")
@@ -32,4 +35,7 @@ public class Categories {
     private String descriptions;
     @Column(name = "catalog_status")
     private boolean status;
+    @OneToMany(mappedBy = "catalog")
+    @JsonIgnore
+    private List<Product> listProduct = new ArrayList<>();
 }
